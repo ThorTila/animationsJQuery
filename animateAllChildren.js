@@ -4,10 +4,18 @@ import $ from 'jquery';
   /**
    * Function to trigger chosen jQuery animation.
    *
+   * @requires jquery
    * @param {string} type Type of animation you want to trigger
    * @param {number} [duration] Duration of animation (default: 5000)
    * @param {number} [delay] Delay between animation starts on every child (default: 200)
    * @returns Element on which it was called
+   * @throws {SyntaxError} When wrong animation type is passed
+   * @example
+   * $('ul').animateAllChildren('fadeOut');
+   * //trigger animation 'fadeOut' on all ul`s children with duration 5000ms and delay between them 200ms
+   * @example
+   * $('ul').animateAllChildren('slideUP', 500, 100);
+   * //trigger animation 'slideUp' on all ul`s children with duration 500ms and delay between them 100ms
    */
   $.fn.animateAllChildren = function(type, duration, delay) {
     var elements = this.children(),
