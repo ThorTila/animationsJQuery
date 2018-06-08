@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 /**
  * @author  Łukasz Rasiński
  * @requires jquery
@@ -37,6 +35,7 @@ import $ from 'jquery';
    * //trigger animation 'slideUp' on all ul`s children with duration 500ms and delay between them 100ms
    */
   $.fn.animateAllChildren = function(type, duration, delay) {
+    if (!type) throw new SyntaxError('No arg passed');
     var elements = this.children(),
       duration = duration || 5000,
       delay = delay || 200;
@@ -89,4 +88,3 @@ import $ from 'jquery';
     return this;
   };
 })(jQuery);
-$('ul').animateAllChildren('dupa', 'dupa', 5);

@@ -1,18 +1,12 @@
 {
-  "name": "animationsJquery",
+  "name": "animationsjQuery",
   "version": "1.0.0",
   "description": "",
   "main": "animateAllChildren.js",
-  "scripts": {
-    "test": "qunit animateAllChildren.test.js"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "jquery": "^3.3.1"
-  },
-  "devDependencies": {
-    "qunit": "^2.6.1"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
