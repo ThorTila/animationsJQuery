@@ -1,13 +1,32 @@
 import $ from 'jquery';
 
+/**
+ * @author  Łukasz Rasiński
+ * @requires jquery
+ */
+
 (function($) {
+  /**
+   * Animations types
+   *
+   * @enum {string}
+   * @readonly
+   */
+  var animations = Object.freeze({
+    FADETOGGLE: 'fadetoggle',
+    FADEOUT: 'fadeout',
+    FADEIN: 'fadein',
+    SLIDETOGGLE: 'slidetoggle',
+    SLIDEUP: 'slideup',
+    SLIDEDOWN: 'slidedown'
+  });
   /**
    * Function to trigger chosen jQuery animation.
    *
-   * @requires jquery
-   * @param {string} type Type of animation you want to trigger
-   * @param {number} [duration] Duration of animation (default: 5000)
-   * @param {number} [delay] Delay between animation starts on every child (default: 200)
+   * @name animateAllChildren
+   * @param {animations} type Type of animation you want to trigger
+   * @param {number} [duration=5000] Duration of animation (default: 5000)
+   * @param {number} [delay=200] Delay between animation starts on every child (default: 200)
    * @returns Element on which it was called
    * @throws {SyntaxError} When wrong animation type is passed
    * @example
@@ -22,42 +41,42 @@ import $ from 'jquery';
       duration = duration || 5000,
       delay = delay || 200;
     switch (type.toLowerCase()) {
-      case 'fadetoggle':
+      case animations.FADETOGGLE:
         elements.each(function(i) {
           $(this)
             .delay(delay * i)
             .fadeToggle({ queue: true, duration: duration });
         });
         break;
-      case 'fadeout':
+      case animations.FADEOUT:
         elements.each(function(i) {
           $(this)
             .delay(delay * i)
             .fadeOut({ queue: true, duration: duration });
         });
         break;
-      case 'fadein':
+      case animations.FADEIN:
         elements.each(function(i) {
           $(this)
             .delay(delay * i)
             .fadeIn({ queue: true, duration: duration });
         });
         break;
-      case 'slidetoggle':
+      case animations.SLIDETOGGLE:
         elements.each(function(i) {
           $(this)
             .delay(delay * i)
             .slideToggle({ queue: true, duration: duration });
         });
         break;
-      case 'slideup':
+      case animations.SLIDEUP:
         elements.each(function(i) {
           $(this)
             .delay(delay * i)
             .slideUp({ queue: true, duration: duration });
         });
         break;
-      case 'slidedown':
+      case animations.SLIDEDOWN:
         elements.each(function(i) {
           $(this)
             .delay(delay * i)
@@ -70,3 +89,4 @@ import $ from 'jquery';
     return this;
   };
 })(jQuery);
+$('ul').animateAllChildren('dupa', 'dupa', 5);
