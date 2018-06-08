@@ -1,6 +1,14 @@
 import $ from 'jquery';
 
 (function($) {
+  /**
+   * Function to trigger chosen jQuery animation.
+   *
+   * @param {string} type Type of animation you want to trigger
+   * @param {number} [duration] Duration of animation (default: 5000)
+   * @param {number} [delay] Delay between animation starts on every child (default: 200)
+   * @returns Element on which it was called
+   */
   $.fn.animateAllChildren = function(type, duration, delay) {
     var elements = this.children(),
       duration = duration || 5000,
