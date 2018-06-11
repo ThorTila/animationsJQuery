@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JQuery Animations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="./animateAllChildren.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        ul {
+            display: block;
+            background: red;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+            display: block;
+            background: green;
+            padding: 5%;
+            border: 1px solid black;
+        }
+
+        span {
+            font-size: 10px;
+        }
+
+        li:nth-of-type(2n) {
+            display: none;
+        }
+
+        button {
+            padding: 5%;
+            margin: 2%;
+            background: transparent;
+            border: 2px solid blue;
+            border-radius: 10px;
+            color: blue;
+        }
+
+        button:hover {
+            background: blue;
+            border: 2px solid transparent;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Check plugin with various options</h1>
+        <ul>
+            <li>
+                <span>span </span>lorem ipsum 1</li>
+            <li>lorem ipsum 2</li>
+            <li>lorem ipsum 3</li>
+            <li>lorem ipsum 4</li>
+            <li>lorem ipsum 5</li>
+        </ul>
+    </div>
+    <div>
+        <button class="in">fade in</button>
+        <button class="out">fade out</button>
+        <button class="toggle">fade togggle</button>
+        <button class="slide-toggle">slide togggle</button>
+        <button class="down">slide down</button>
+        <button class="up">slide up</button>
+    </div>
+    <script>$('button.in').click(function () {
+            $('ul').animateAllChildren('fadeIn', 5000, 200);
+        });
+        $('button.out').click(function () {
+            $('ul').animateAllChildren('fadeOut', { queue: false, duration: 1000, easing: "linear" });
+        });
+        $('button.toggle').click(function () {
+            $('ul').animateAllChildren('fadeToggle', 500, 2000);
+        });
+        $('button.slide-toggle').click(function () {
+            $('ul').animateAllChildren('slideToggle', 500);
+        });
+        $('button.up').click(function () {
+            $('ul').animateAllChildren('slideUp');
+        });
+        $('button.down').click(function () {
+            $('ul').animateAllChildren('slideDown');
+        });
+    </script>
+</body>
+
+</html>
