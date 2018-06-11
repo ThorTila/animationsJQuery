@@ -10,7 +10,7 @@ QUnit.test('wrong type passed', function(assert) {
 QUnit.test('no arg passed', function(assert) {
   assert.throws(
     () => $('body').animateAllChildren(),
-    new SyntaxError('No arg passed')
+    new SyntaxError('Wrong animation type passed.')
   );
 });
 
@@ -25,28 +25,30 @@ QUnit.test('fadeIn one element with default arguments', function(assert) {
 
   assert.ok(listEl.css('display').indexOf('none') > -1);
 
-  list.animateAllChildren('fadein');
+  list.animateAllChildren('fadeIn');
 
-  clock.tick(5100);
+  clock.tick(500);
 
   assert.ok(listEl.css('display').indexOf('list-item') > -1);
 
   list.remove();
 });
 
-QUnit.test('fadeOut multiple elements with specified values', function(assert) {
+QUnit.test('fadeOut multiple elements with specified number values', function(
+  assert
+) {
   var list = testList(5),
     listEl = list.children(),
     clock = sinon.useFakeTimers(),
-    duration = 500,
+    options = 500,
     delay = 200,
-    time = (listEl.length - 1) * delay + duration;
+    time = (listEl.length - 1) * delay + options;
 
   list.appendTo(document.body);
 
   assert.ok(listEl.css('display').indexOf('list-item') > -1);
 
-  list.animateAllChildren('fadeout', duration, delay);
+  list.animateAllChildren('fadeOut', options, delay);
 
   clock.tick(time + 100);
 
@@ -61,21 +63,21 @@ QUnit.test('fadeOut multiple elements with specified values', function(assert) {
   list.remove();
 });
 
-QUnit.test('slideUp multiple elements with uppercase argument', function(
+QUnit.test('slideUp multiple elements with object options argument', function(
   assert
 ) {
   var list = testList(5),
     listEl = list.children(),
     clock = sinon.useFakeTimers(),
-    duration = 500,
+    options = { duration: 500, easing: 'linear', queue: false },
     delay = 200,
-    time = (listEl.length - 1) * delay + duration;
+    time = delay + options.duration;
 
   list.appendTo(document.body);
 
   assert.ok(listEl.css('display').indexOf('list-item') > -1);
 
-  list.animateAllChildren('SLIDEUP', duration, delay);
+  list.animateAllChildren('slideUp', options, delay);
 
   clock.tick(time + 100);
 
@@ -84,40 +86,6 @@ QUnit.test('slideUp multiple elements with uppercase argument', function(
       $(this)
         .css('display')
         .indexOf('none') > -1
-    );
-  });
-
-  list.remove();
-});
-
-QUnit.test('slideDown multiple elements with mixed case argument', function(
-  assert
-) {
-  var list = testList(5),
-    listEl = list.children(),
-    clock = sinon.useFakeTimers(),
-    duration = 500,
-    delay = 200,
-    time = (listEl.length - 1) * delay + duration;
-
-  list.appendTo(document.body);
-
-  listEl.css('display', 'none');
-
-  assert.ok(listEl.css('display').indexOf('none') > -1);
-
-  list.animateAllChildren('SlIDedOWn', duration, delay);
-
-  clock.tick(time + 100);
-
-  listEl.each(function() {
-    assert.ok(
-      $(this)
-        .css('overflow')
-        .indexOf('visible') > -1 &&
-        $(this)
-          .css('display')
-          .indexOf('list-item') > -1
     );
   });
 
